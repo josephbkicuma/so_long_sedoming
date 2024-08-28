@@ -6,7 +6,7 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 21:29:13 by jquicuma          #+#    #+#             */
-/*   Updated: 2024/08/27 22:20:07 by jquicuma         ###   ########.fr       */
+/*   Updated: 2024/08/28 00:52:10 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,28 @@ void    map_width_heigh(t_mlx *mlx)
     mlx->comprimento = ft_strlen(mlx->map[0]) - 1;
 }
 
-void    draw_on_screen(t_mlx *mlx)
+void    draw_on_screen(t_mlx *mlx, char **maps)
 {
-    
+    int     i;
+    int     j;
+    char    **map;
+
+    i = -1;
+    map = maps;
+    while (map[++i])
+    {
+        j = -1;
+        while (map[i][++j])
+        {
+            mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img_o, j * PIXELS, i * PIXELS);
+            if (map[i][j] == 'C')
+                mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img_c, j * PIXELS, i * PIXELS);
+            if (map[i][j] == 'P')
+                mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img_p, j * PIXELS, i * PIXELS);
+            if (map[i][j] == 'E')
+                mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img_e, j * PIXELS, i * PIXELS);
+            if (map[i][j] == '1')
+                mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img_i, j * PIXELS, i * PIXELS);
+        }
+    }
 }
